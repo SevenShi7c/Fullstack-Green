@@ -9,36 +9,45 @@ export default class Login extends Component {
     isNull: true,
     correct: false,
     resString: "",
+    length:1,
   };
 
-  // if isnull when blur out input =>message error 
+  // if isnull when blur out input =>message error
   handleOnBlur = (e) => {
     const value = e.target.value;
 
-    if (value==="") {
+    if (value === "") {
       this.setState({
         resString: "Vui lòng không để trống trường này!",
+        length: value.length,
       });
     } else {
       this.setState({
-        resString:"",
-      })
+        resString: "",
+      });
     }
-    };
+    console.log(this.state.length);
+
+  };
 
   // if element have value => setState.isNull=false
   handleOnChange = (e) => {
+    var valueLength = e.target.value.length;
     this.setState({
       isNull: false,
+      length: valueLength,
     });
+    console.log(this.state.length);
+
   };
 
   //  if submit =>
-    // 1.input email correct type email
-    // 2.password.length() < 6=>error
-    // 3. if all correct => signal: login success!
-  handleSubmit=(e)=>{
-    console.log("Submit successfully!");
+  // 1.input email correct type email
+  // 2.password.length() < 6=>error
+  // 3. if all correct => signal: login success!
+  handleSubmit = (e) => {
+    if (!this.state.isNull && this.state.length >= 6)
+      alert("Submit successfully!");
   };
 
   render() {
@@ -72,10 +81,9 @@ export default class Login extends Component {
           />
           <label style={styleLabelError}>{this.state.resString}</label>
           {/* email */}
-          <button type="submit" >LOGIN</button>
+          <button type="submit">LOGIN</button>
         </div>
       </form>
     );
   }
 }
-
