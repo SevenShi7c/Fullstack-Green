@@ -11,7 +11,7 @@ body {
   justify-content: center;
   place-items: center;
   overflow: hidden;
-  font-family: poppins;
+  font-family: poppins,Arial, Helvetica, sans-serif;
 }
 
 .container {
